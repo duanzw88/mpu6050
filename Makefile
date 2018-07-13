@@ -6,16 +6,19 @@ CC=gcc
 CFLAGS= -std=c99
 CXX = g++
 
-OBJ_DIR=../objs
+OBJ_DIR=./objs
 objects = I2Cdev.o MPU6050.o
 OBJS = $(addprefix $(OBJ_DIR)/,$(objects))
 
-LIB_DIR = ../libs
+LIB_DIR = ./libs
 lib = libmpu6050
 LIB_S=$(addprefix $(LIB_DIR)/,$(lib))
 LIB_STATIC=$(addsuffix .a,$(LIB_S))
 LIB_D=$(addprefix $(LIB_DIR)/,$(lib))
 
+EXAMPLE_DIR=./examples
+examples = demo_dmp demp_raw
+EXAMPLES=$(addprefix $(EXAMPLE_DIR)/,$(examples))
 
 
 all:$(OBJ_DIR) $(LIB_DIR) $(LIB_STATIC) $(LIB_DYNAMIC)
@@ -32,7 +35,11 @@ $(LIB_DYNAMIC):$(OBJS)
 $(OBJ_DIR)/%.o:src/%.cpp
 	$(CXX) -g -o $@ -c $^ -I$(INCLUDE_DIR)
 
+$(EXAMPLE_DIR)/demo_dmp:examples/demo_dmp.cpp
+	$(XX) -g $(CFLAGS) -o $@  $< -I$(INCLUDE_DIR) -L./libs -lmpu6050
 
+$(EXAMPLE_DIR)/demp_raw:examples/demp_raw.cpp
+	$(XX) -g $(CFLAGS) -o $@  $< -I$(INCLUDE_DIR) -L./libs -lmpu6050
 
 clean:
 	$(RM) $(OBJS)
