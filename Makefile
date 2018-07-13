@@ -42,4 +42,4 @@ $(EXAMPLE_DIR)/demp_raw:examples/demp_raw.cpp
 	$(XX) -g $(CFLAGS) -o $@  $< -I$(INCLUDE_DIR) -L./libs -lmpu6050
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(EXAMPLES) libs/* objs/*
