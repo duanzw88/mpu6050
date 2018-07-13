@@ -1,0 +1,32 @@
+
+EULER_INCLUDE = euler/include
+
+CC=gcc
+# CXX = g++
+
+CFLAGS= -std=c99
+AR=ar
+RM=rm -rf
+
+EXAMPLE_DIR=./examples
+examples = main
+EXAMPLES=$(addprefix $(EXAMPLE_DIR)/,$(examples))
+
+SUBDIRS = euler
+
+.PHONE:all
+all:
+	@list='$(SUBDIRS)';for subdir in $$list; do \
+		echo "Clean in $$subdir"; \
+		$(MAKE) -C $$subdir; \
+	done
+test:$(EXAMPLES)
+
+$(EXAMPLE_DIR)/main:examples/main.c
+	$(CC) -g $(CFLAGS) -o $@  $< -I$(EULER_INCLUDE) -L./libs -leuler
+clean:
+	@list='$(SUBDIRS)';for subdir in $$list; do \
+		echo "Clean in $$subdir"; \
+		$(MAKE) clean -C $$subdir; \
+	done
+	$(RM) $(EXAMPLES) libs/*
