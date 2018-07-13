@@ -36,10 +36,10 @@ $(OBJ_DIR)/%.o:src/%.cpp
 	$(CXX) -g -o $@ -c $^ -I$(INCLUDE_DIR)
 
 $(EXAMPLE_DIR)/demo_dmp:examples/demo_dmp.cpp
-	$(XX) -g $(CFLAGS) -o $@  $< -I$(INCLUDE_DIR) -L./libs -lmpu6050
+	$(CXX) -g $(CFLAGS) -o $@  $< -I$(INCLUDE_DIR) -L./libs -lmpu6050
 
 $(EXAMPLE_DIR)/demo_raw:examples/demo_raw.cpp
-	$(XX) -g $(CFLAGS) -o $@  $< -I$(INCLUDE_DIR) -L./libs -lmpu6050
+	$(CXX) -g $(CFLAGS) -o $@  $< -I$(INCLUDE_DIR) -L./libs -lmpu6050
 
 clean:
 	$(RM) $(EXAMPLES) libs/* objs/*
