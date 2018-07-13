@@ -21,7 +21,7 @@ examples = demo_dmp demp_raw
 EXAMPLES=$(addprefix $(EXAMPLE_DIR)/,$(examples))
 
 
-all:$(OBJ_DIR) $(LIB_DIR) $(LIB_STATIC) $(LIB_DYNAMIC)
+all:$(OBJ_DIR) $(LIB_DIR) $(LIB_STATIC) $(LIB_DYNAMIC) $(EXAMPLE_DIR)
 
 $(OBJ_DIR):
 	$(MKDIR) $@
