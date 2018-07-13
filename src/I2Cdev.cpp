@@ -27,7 +27,7 @@ I2Cdev::I2Cdev(){};
  * @param  timeout 操作超时的时间
  * @return         读操作的状态
  */
-int8_t I2Cdev::readBit(uint8_t devAddr,uint8_t regAddr,uint8_t bitNum,uint8_t *data,uint16_t timeout=I2Cdev::readTimeout)
+int8_t I2Cdev::readBit(uint8_t devAddr,uint8_t regAddr,uint8_t bitNum,uint8_t *data,uint16_t timeout)
 {
     uint8_t b;
     uint8_t count = readByte(devAddr,regAddr,&b,timeout);
@@ -45,7 +45,7 @@ int8_t I2Cdev::readBit(uint8_t devAddr,uint8_t regAddr,uint8_t bitNum,uint8_t *d
  * @param  timeout 超时
  * @return         读取状态
  */
-int8_t I2Cdev::readBitW(uint8_t devAddr,uint8_t regAddr,uint8_t bitNum,uint16_t *data,uint16_t timeout=I2Cdev::readTimeout)
+int8_t I2Cdev::readBitW(uint8_t devAddr,uint8_t regAddr,uint8_t bitNum,uint16_t *data,uint16_t timeout)
 {
     uint16_t b;
     uint8_t count = readWord(devAddr,regAddr,&b,timeout);
@@ -64,7 +64,7 @@ int8_t I2Cdev::readBitW(uint8_t devAddr,uint8_t regAddr,uint8_t bitNum,uint16_t 
  * @param  timeout  超时
  * @return          读取状态
  */
-int8_t I2Cdev::readBits(uint8_t devAddr,uint8_t regAddr,uint8_t bitStart,uint8_t length,uint8_t *data,uint16_t timeout=I2Cdev::readTimeout)
+int8_t I2Cdev::readBits(uint8_t devAddr,uint8_t regAddr,uint8_t bitStart,uint8_t length,uint8_t *data,uint16_t timeout)
 {
     uint8_t count,b;
     count = readByte(devAddr,regAddr,&b,timeout);
@@ -87,7 +87,7 @@ int8_t I2Cdev::readBits(uint8_t devAddr,uint8_t regAddr,uint8_t bitStart,uint8_t
  * @param  timeout  超时
  * @return          读取状态
  */
-int8_t I2Cdev::readBitsW(uint8_t devAddr,uint8_t regAddr,uint8_t bitStart,uint8_t length,uint16_t *data,uint16_t timeout=I2Cdev::readTimeout)
+int8_t I2Cdev::readBitsW(uint8_t devAddr,uint8_t regAddr,uint8_t bitStart,uint8_t length,uint16_t *data,uint16_t timeout)
 {
     uint8_t count;
     uint16_t w;
@@ -111,7 +111,7 @@ int8_t I2Cdev::readBitsW(uint8_t devAddr,uint8_t regAddr,uint8_t bitStart,uint8_
  * @param  timeout 超时
  * @return         读取数据的状态
  */
-int8_t I2Cdev::readByte(uint8_t devAddr,uint8_t regAddr,uint8_t *data,uint16_t timeout=I2Cdev::readTimeout)
+int8_t I2Cdev::readByte(uint8_t devAddr,uint8_t regAddr,uint8_t *data,uint16_t timeout)
 {
     return readBytes(devAddr,regAddr,1,data,timeout);
 }
@@ -123,7 +123,7 @@ int8_t I2Cdev::readByte(uint8_t devAddr,uint8_t regAddr,uint8_t *data,uint16_t t
  * @param  timeout 超时
  * @return         读取数据的状态
  */
-int8_t I2Cdev::readWord(uint8_t devAddr,uint8_t regAddr,uint16_t *data,uint16_t timeout=I2Cdev::readTimeout)
+int8_t I2Cdev::readWord(uint8_t devAddr,uint8_t regAddr,uint16_t *data,uint16_t timeout)
 {
     return readWords(devAddr,regAddr,1,data,timeout);
 }
@@ -136,7 +136,7 @@ int8_t I2Cdev::readWord(uint8_t devAddr,uint8_t regAddr,uint16_t *data,uint16_t 
  * @param  timeout 超时
  * @return         读取到数据的个数
  */
-int8_t I2Cdev::readBytes(uint8_t devAddr,uint8_t regAddr,uint8_t length,uint8_t *data,uint16_t timeout=I2Cdev::readTimeout)
+int8_t I2Cdev::readBytes(uint8_t devAddr,uint8_t regAddr,uint8_t length,uint8_t *data,uint16_t timeout)
 {
     int8_t count = 0;
     int fd = open("/dev/i2c-1",O_RDWR);
@@ -180,7 +180,7 @@ int8_t I2Cdev::readBytes(uint8_t devAddr,uint8_t regAddr,uint8_t length,uint8_t 
  * @param  timeout 超时
  * @return         读取到数据的个数
  */
-int8_t I2Cdev::readWords(uint8_t devAddr,uint8_t regAddr,uint8_t length,uint16_t *data,uint16_t timeout=I2Cdev::readTimeout)
+int8_t I2Cdev::readWords(uint8_t devAddr,uint8_t regAddr,uint8_t length,uint16_t *data,uint16_t timeout)
 {
     int8_t count = 0;
     uint8_t buf[128];
