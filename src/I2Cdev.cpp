@@ -304,7 +304,7 @@ bool I2Cdev::writeByte(uint8_t devAddr,uint8_t regAddr,uint8_t data)
  */
 bool I2Cdev::writeWord(uint8_t devAddr,uint8_t regAddr,uint16_t data)
 {
-    return writeBytes(devAddr,regAddr,1,&data);
+    return writeWords(devAddr,regAddr,1,&data);
 }
 /**
  * 往一个8位寄存器中写入多个字节数据
