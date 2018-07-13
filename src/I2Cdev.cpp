@@ -76,7 +76,7 @@ int8_t I2Cdev::readBits(uint8_t devAddr,uint8_t regAddr,uint8_t bitStart,uint8_t
         b >> (bitStart - length + 1);
         *data = b;
     }
-    fprintf(stderr, " readBits readCount = %d data = %d\n",count,);
+    fprintf(stderr, " readBits readCount = %d data = %d\n",count,*data);
     return count;
 }
 /**
