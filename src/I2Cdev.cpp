@@ -14,6 +14,7 @@
 #include <linux/i2c-dev.h>
 #include "I2Cdev.h"
 
+uint16_t I2Cdev::readTimeout = 0;
 /**
  * 默认构造函数
  */
