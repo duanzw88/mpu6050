@@ -72,7 +72,7 @@ int8_t I2Cdev::readBits(uint8_t devAddr,uint8_t regAddr,uint8_t bitStart,uint8_t
     {
         uint8_t mask = (1 << length - 1) << bitStart;
         b &= mask;
-        b >> bitStart
+        b >> bitStart;
         *data = b;
     }
     return count;
