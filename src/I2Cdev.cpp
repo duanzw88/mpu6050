@@ -293,7 +293,7 @@ bool I2Cdev::writeBitsW(uint8_t devAddr,uint8_t regAddr,uint8_t bitStart,uint8_t
  */
 bool I2Cdev::writeByte(uint8_t devAddr,uint8_t regAddr,uint8_t data)
 {
-    return writeBytes(devAddr,regAddr,1,data);
+    return writeBytes(devAddr,regAddr,1,&data);
 }
 /**
  * 往一个8位寄存器写入一个byte数据
@@ -304,7 +304,7 @@ bool I2Cdev::writeByte(uint8_t devAddr,uint8_t regAddr,uint8_t data)
  */
 bool I2Cdev::writeWord(uint8_t devAddr,uint8_t regAddr,uint16_t data)
 {
-    return writeBytes(devAddr,regAddr,1,data);
+    return writeBytes(devAddr,regAddr,1,&data);
 }
 /**
  * 往一个8位寄存器中写入多个字节数据
@@ -333,7 +333,7 @@ bool I2Cdev::writeBytes(uint8_t devAddr,uint8_t regAddr,uint8_t length,uint8_t *
         return FALSE;
     }
 
-    if(ioctl(fd,I2I2C_SLAVE,devAddr) < 0)
+    if(ioctl(fd,I2C_SLAVE,devAddr) < 0)
     {
         fprintf(stderr, "Failed to select device:%s\n",strerror(errno));
         close(fd);
