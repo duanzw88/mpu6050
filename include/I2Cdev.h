@@ -9,7 +9,7 @@
 #define FALSE (0==1)
 #endif
 
-class I2CDev
+class I2Cdev
 {
 public:
     I2Cdev();
