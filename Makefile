@@ -17,7 +17,7 @@ LIB_STATIC=$(addsuffix .a,$(LIB_S))
 LIB_D=$(addprefix $(LIB_DIR)/,$(lib))
 
 EXAMPLE_DIR=./examples
-examples = demo_dmp demp_raw
+examples = demo_dmp demo_raw
 EXAMPLES=$(addprefix $(EXAMPLE_DIR)/,$(examples))
 
 
@@ -38,7 +38,7 @@ $(OBJ_DIR)/%.o:src/%.cpp
 $(EXAMPLE_DIR)/demo_dmp:examples/demo_dmp.cpp
 	$(XX) -g $(CFLAGS) -o $@  $< -I$(INCLUDE_DIR) -L./libs -lmpu6050
 
-$(EXAMPLE_DIR)/demp_raw:examples/demp_raw.cpp
+$(EXAMPLE_DIR)/demo_raw:examples/demo_raw.cpp
 	$(XX) -g $(CFLAGS) -o $@  $< -I$(INCLUDE_DIR) -L./libs -lmpu6050
 
 clean:
