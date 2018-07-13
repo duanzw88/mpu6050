@@ -71,11 +71,12 @@ int8_t I2Cdev::readBits(uint8_t devAddr,uint8_t regAddr,uint8_t bitStart,uint8_t
     count = readByte(devAddr,regAddr,&b,timeout);
     if(count > 0)
     {
-        uint8_t mask = (1 << length - 1) << bitStart;
+        uint8_t mask = (1 << length - 1) << (bitStart - length + 1);
         b &= mask;
-        b >> bitStart;
+        b >> (bitStart - length + 1);
         *data = b;
     }
+    fprintf(stderr, " readBits readCount = %d data = %d\n",count,);
     return count;
 }
 /**
